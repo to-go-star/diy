@@ -6,7 +6,7 @@ while [[ "$input" == "y" ]]
 do
     result=$(curl --user-agent "${UA_Browser}" -fsL --write-out %{http_code} --output /dev/null --max-time 10 "https://www.netflix.com/title/70143836" 2>&1)
     region=$(curl --user-agent "${UA_Browser}" -s --max-time 10 -X POST "https://global.edge.bamgrid.com/devices" -H "authorization: Bearer ZGlzbmV5JmJyb3dzZXImMS4wLjA.Cu56AgSfBTDag5NiRA81oLHkDZfu5L3CKadnefEAY84"  2>&1)
- if [[ "$result" == "200" ]] &&[[ "$region" == "{"errors":[{"code":"ClientError","description":"Expecting text/json or application/json body /devices 415"}]}" ]]; then
+ if [[ "$result" == "200" ]] &&[[ "$region" =~ "ClientError" ]]; then
         echo -e "IP OK!$(date)"
         sleep 1200           
  else
