@@ -10,7 +10,7 @@ do
         echo -e "$region,$result,IP OK!$(date)"
         sleep 1200           
  else
-       echo -e "$region,$result,IP掉了切换中$(date)"
+       echo -e "$region,$result,IP掉了切换中!!!$(date)"
        systemctl restart wg-quick@wgcf
        sleep 3
   fi
