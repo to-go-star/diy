@@ -6,7 +6,7 @@ while [[ "$input" == "y" ]]
 do
     result=$(curl --user-agent "${UA_Browser}" -fsL --write-out %{http_code} --output /dev/null --max-time 5 "https://www.netflix.com/title/70143836" 2>&1)
     restwo=$(curl  --user-agent "${UA_Browser}" -fsL --write-out %{http_code} --output /dev/null -s --max-time 5 -X POST "https://global.edge.bamgrid.com/devices" -H "authorization: Bearer ZGlzbmV5JmJyb3dzZXImMS4wLjA.Cu56AgSfBTDag5NiRA81oLHkDZfu5L3CKadnefEAY84" 2>&1)
- if [[ "$result" == "200" ]] &&[[ "$region" != "403" ]]&&[[ "$restwo" != "403" ]]; then
+ if [[ "$result" == "200" ]]&&[[ "$restwo" != "403" ]]; then
         echo -e "$result,$restwo,IP is OK!$(date)"
         sleep 600           
  else
