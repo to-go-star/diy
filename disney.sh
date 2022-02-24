@@ -18,13 +18,9 @@ do
  isUnabailable=$(echo $previewcheck | grep 'unavailable')
  region=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'countryCode' | cut -f4 -d'"')
  inSupportedLocation=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'inSupportedLocation' | awk '{print $2}' | cut -f1 -d',')
-if [[ "region" = "SG" ]]; then
+if [[ "$region" = "SG" ]]&&[[ "$inSupportedLocation" = "true" ]]; then
         echo -e "$region,DISNEY IP is OK!$(date)"
         sleep 300           
- elif [ -n "$region" ] && [[ "$inSupportedLocation" == "false" ]] && [ -z "$isUnabailable" ]; then
-       echo -e "$region IP废了,切换中!!!$(date)"
-       systemctl restart wg-quick@wgcf
-       sleep 3
  else
        echo -e "$region $inSupportedLocation IP废了,切换中!!!$(date)"
        systemctl restart wg-quick@wgcf
