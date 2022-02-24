@@ -27,7 +27,7 @@ do
  region=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'countryCode' | cut -f4 -d'"')
  inSupportedLocation=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'inSupportedLocation' | awk '{print $2}' | cut -f1 -d',')
 if [[ "region" = "SG" ]]; then
-        echo -e "$restwo,DISNEY IP is OK!$(date)"
+        echo -e "$region,DISNEY IP is OK!$(date)"
         systemctl restart wg-quick@wgcf
         sleep 300           
  elif [ -n "$region" ] && [[ "$inSupportedLocation" == "false" ]] && [ -z "$isUnabailable" ]; then
