@@ -15,7 +15,7 @@ do
 
         if [ -n "$isBanned" ] || [ -n "$is403" ]; then
             systemctl restart wg-quick@wgcf
-            echo -n -e "IP废了,切换中!!!"
+            echo -n -e " $isBanned  $is403 IP废了,切换中!!!"
             sleep 3
         fi
  fakecontent=$(curl -s --max-time 10 "https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/cookies" | sed -n '8p')
@@ -31,11 +31,11 @@ if [[ "region" = "SG" ]]; then
         systemctl restart wg-quick@wgcf
         sleep 300           
  elif [ -n "$region" ] && [[ "$inSupportedLocation" == "false" ]] && [ -z "$isUnabailable" ]; then
-       echo -e "IP废了,切换中!!!$(date)"
+       echo -e "$region IP废了,切换中!!!$(date)"
        systemctl restart wg-quick@wgcf
        sleep 3
  else
-       echo -e "IP废了,切换中!!!$(date)"
+       echo -e "$region $inSupportedLocation IP废了,切换中!!!$(date)"
        systemctl restart wg-quick@wgcf
        sleep 3   
   fi
