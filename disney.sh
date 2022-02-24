@@ -25,7 +25,7 @@ do
  region=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'countryCode' | cut -f4 -d'"')
  inSupportedLocation=$(echo $tmpresult | python3 -m json.tool 2> /dev/null | grep 'inSupportedLocation' | awk '{print $2}' | cut -f1 -d',')
 if [[ "$region" = "SG" ]]&&[[ "$inSupportedLocation" = "true" ]]; then
-        echo -e "$region,DISNEY IP is OK!$(date)"
+        echo -e "$region,$inSupportedLocation DISNEY IP is OK!$(date)"
         sleep 300           
  else
        echo -e "$region $inSupportedLocation IP废了,切换中!!!$(date)"
