@@ -16,7 +16,9 @@ do
        
         /etc/init.d/dnsmasq restart        
         sleep 2
-    else  
+    else 
+        newip=$(curl -sSL -4 "https://api.ip.sb/geoip" 2>&1)
+        ip=$(echo $newip | python3 -m json.tool 2> /dev/null | grep ip | cut -f4 -d'"')
         echo -e "当前IP:$ip 解锁奈飞正常 时间：$(date)"
         sleep 180
 
