@@ -20,7 +20,5 @@ do
         ip=$(echo $newip | python3 -m json.tool 2> /dev/null | grep ip | cut -f4 -d'"')
         echo -e "当前IP:$ip 解锁奈飞正常 时间：$(date)"
         sleep 180
-
-
     fi
 done
