@@ -6,7 +6,7 @@ while [[ "$input" == "y" ]]
 do
     result=$(curl --user-agent "${UA_Browser}" -fsL --write-out %{http_code} --output /dev/null --max-time 10 "https://www.netflix.com/title/70143836" 2>&1)
     if [[ "$result" != "200" ]];then
-        echo -e "解锁掉了。开始切换IP$(date)"
+        echo -e "解锁掉了。开始切换IP！时间：$(date)"
         curl -sL https://api.pqs.pw/ipch/txu8np7ip7
         newip=$(curl -sSL -4 "https://api.ip.sb/geoip" 2>&1)
         ip=$(echo $newip | python3 -m json.tool 2> /dev/null | grep ip | cut -f4 -d'"')
@@ -18,7 +18,7 @@ do
         
         sleep 2
     else  
-        echo -e "当前IP:$ip 解锁奈飞正常$(date)"
+        echo -e "当前IP:$ip 解锁奈飞正常 时间：$(date)"
         sleep 180
 
 
