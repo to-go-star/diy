@@ -11,7 +11,7 @@ do
         sleep 5 
         newip=$(curl -sSL -4 "https://api.ip.sb/geoip" 2>&1)
         ip=$(echo $newip | python3 -m json.tool 2> /dev/null | grep ip | cut -f4 -d'"')
-        until [[ "$ip" != "0" ]]
+        until [[ "$ip" != "" ]]
     do
         newip=$(curl -sSL -4 "https://api.ip.sb/geoip" 2>&1)
         ip=$(echo $newip | python3 -m json.tool 2> /dev/null | grep ip | cut -f4 -d'"')
